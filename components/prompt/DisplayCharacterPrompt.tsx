@@ -331,7 +331,7 @@ const DisplayCharacterPrompt: React.FC<Props> = ({
     return (
         // 
         <>
-            <div className="grid grid-cols-2 gap-4 mb-3">
+            <div className="grid grid-cols-1 gap-4 mb-3">
                 <Button
                     onClick={() => setShowSegments(!showSegments)}
                     className="flex items-center gap-2 px-3 py-1 text-xs bg-purple-100 text-purple-700 rounded-md hover:bg-purple-200 transition-colors"
@@ -341,12 +341,7 @@ const DisplayCharacterPrompt: React.FC<Props> = ({
                     {!showSegments && <Eye className="w-4 h-4" /> }
                     {showSegments ? 'Hide' : 'Show'} Segments
                 </Button>
-                <GenericSelect
-                    options={aIModels}
-                    selected={aIModel}
-                    onSelect={setAIModel}
-                    className="w-full"
-                />
+               
             </div>
             {
                 showSegments &&

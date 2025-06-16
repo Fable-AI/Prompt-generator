@@ -43,7 +43,7 @@ const NeckWearComponent: React.FC<Props> = ({ setOpenModal, openModal }) => {
     return (
         <Sheet open={openModal} onOpenChange={setOpenModal}>
 
-            <SheetContent className="overflow-y-scroll bg-white border-0 xs:min-w-[90%] sm:min-w-[96%] md:min-w-[65%] lg:min-w-[65%] xl:min-w-[40%]">
+            <SheetContent className="overflow-y-scroll bg-white border-0 min-w-[98%] xs:min-w-[98%] sm:min-w-[96%] md:min-w-[65%] lg:min-w-[65%] xl:min-w-[40%]">
 
                 <SheetHeader className='px-7 pt-7 pb-0'>
                     <SheetTitle className='text-2xl font-extrabold '>Neck Wear Customization</SheetTitle>

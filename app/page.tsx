@@ -115,10 +115,10 @@ export default function LandingMenu() {
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-svh">
 					<MenuItem item={menuItems[5]} handleClick={() => router.push("/character-library") } />
 					<MenuItem item={menuItems[0]} handleClick={() => setOpenModal(true)} />
-					<MenuItem item={menuItems[1]} handleClick={() => router.push("/scene-builder") }  />
-					<MenuItem item={menuItems[2]} handleClick={(val) => console.log(val)} />
-					<MenuItem item={menuItems[3]} handleClick={(val) => console.log(val)} />
-					<MenuItem item={menuItems[4]} handleClick={(val) => console.log(val)} />
+					<MenuItem item={menuItems[1]} handleClick={() => router.push("/scene-composer") }  />
+					{/* <MenuItem item={menuItems[2]} handleClick={(val) => console.log(val)} /> */}
+					{/* <MenuItem item={menuItems[3]} handleClick={(val) => console.log(val)} /> */}
+					{/* <MenuItem item={menuItems[4]} handleClick={(val) => console.log(val)} /> */}
 				</div>
 
 				<footer className="mt-16 text-center text-gray-500 text-sm">

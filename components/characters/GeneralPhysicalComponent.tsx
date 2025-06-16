@@ -160,7 +160,7 @@ const GeneralPhysicalComponent: React.FC<Props> = ({ setOpenGeneralPhysicalModal
     return (
         <Sheet open={openGeneralPhysicalModal} onOpenChange={setOpenGeneralPhysicalModal}>
 
-            <SheetContent className="overflow-y-scroll bg-white border-0 min-w-[99%] xs:min-w-[98%] sm:min-w-[96%] md:min-w-[65%] lg:min-w-[65%] xl:min-w-[50%]">
+            <SheetContent className="overflow-y-scroll bg-white border-0 min-w-[98%] xs:min-w-[98%] sm:min-w-[96%] md:min-w-[65%] lg:min-w-[65%] xl:min-w-[50%]">
 
                 <SheetHeader className='px-7 pt-7 pb-0'>
                     <SheetTitle className='text-2xl font-extrabold '>General Physical</SheetTitle>

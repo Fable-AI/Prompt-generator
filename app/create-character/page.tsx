@@ -21,9 +21,17 @@ import DisplayCharacterPrompt from "@/components/prompt/DisplayCharacterPrompt";
 import Link from "next/link";
 import { buildGenerateCharacterPrompt } from "@/lib/prompts";
 import { useMainContext } from "@/contexts/MainContext";
+import GenericSelect from "@/components/shared/GenericSelect";
 
 
-
+const aIModels = [
+    "Midjourney", 
+    "Google's W.I.S.K",
+    "DALL-E 3",
+    "Stable Diffusion",
+    "Leonardo AI",
+    // "Runway ML",
+]
 
 
 function Boundary() {
@@ -35,7 +43,7 @@ function Boundary() {
 	const [prompt, setPrompt] = useState<string>("");
 	
 	  const {
-		aIModel
+        aIModel, setAIModel
 	} = useMainContext();
 
 	// Reset character data on mount and when characterId changes
@@ -290,10 +298,18 @@ function Boundary() {
 
 					</Accordion>
 
-					<Button onClick={generatePrompt} size="lg" className="bg-purple-900 text-white w-full transition-all hover:bg-purple-800">
-						<Cog />	
-						Generate Prompt
-					</Button>
+					<div className="mt-10">
+						 <GenericSelect
+							options={aIModels}
+							selected={aIModel}
+							onSelect={setAIModel}
+							className="w-full"
+						/>
+						<Button onClick={generatePrompt} size="lg" className="bg-purple-900 mt-4 text-white w-full transition-all hover:bg-purple-800">
+							<Cog />	
+							Generate Prompt
+						</Button>
+					</div>
 					<div className="my-5 grid grid-cols-2 gap-5">
 						<Button onClick={saveCharacter}  size="lg" className="bg-gray-200 w-full text-black">
 							Save
