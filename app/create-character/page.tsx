@@ -22,6 +22,7 @@ import Link from "next/link";
 import { buildGenerateCharacterPrompt } from "@/lib/prompts";
 import { useMainContext } from "@/contexts/MainContext";
 import GenericSelect from "@/components/shared/GenericSelect";
+import { toast } from "sonner";
 
 
 const aIModels = [
@@ -41,6 +42,7 @@ function Boundary() {
 	const context = useCharacterContext();
 	const [characterData, setCharacterData] = useState(null);
 	const [prompt, setPrompt] = useState<string>("");
+	const [generating, setGenerating] = useState<boolean>(false);
 	
 	  const {
         aIModel, setAIModel
@@ -191,7 +193,7 @@ function Boundary() {
 			console.log(prompt);
 			
 			// return
-			// setGenerating(true);
+			setGenerating(true);
 
 			const response = await fetch('/api/stream-llm-response', {
 				method: 'POST',
@@ -205,8 +207,8 @@ function Boundary() {
 			});
 
 			if (!response?.body) {
-				// setGenerating(false);   
-				// toast.error("Try again please");
+				setGenerating(false);   
+				toast.error("Try again please");
 				return;
 			}
 
@@ -229,7 +231,7 @@ function Boundary() {
 		} catch (error) {
 			console.error(error);
 		} finally {
-			// setGenerating(false);
+			setGenerating(false);
 		}
 	}
 
@@ -241,7 +243,7 @@ function Boundary() {
 				<p className="text-gray-600 text-sm mx-10">Create and customize your character with detailed attributes and features.</p>
 			</div>
 			{/* <div className="p-4 max-w-xl mx-auto mb-20"> */}
-			<div className="my-7 mx-auto w-[90%] sm:w-[60%] lg:w-[50%] xl:w-[40%]  gap-14 mb-10">				
+			<div className="my-7 mx-auto w-[90%] sm:w-[60%] lg:w-[50%] xl:w-[40%]  gap-14 mb-5">				
 
 				<div className="col-span-1 mb-20">
 					<Accordion type="single" collapsible>
@@ -299,19 +301,28 @@ function Boundary() {
 					</Accordion>
 
 					<div className="mt-10">
+
+						<p className="font-medium mb-1">Choose AI Model</p>
 						 <GenericSelect
 							options={aIModels}
 							selected={aIModel}
 							onSelect={setAIModel}
 							className="w-full"
 						/>
-						<Button onClick={generatePrompt} size="lg" className="bg-purple-900 mt-4 text-white w-full transition-all hover:bg-purple-800">
-							<Cog />	
-							Generate Prompt
+						<Button onClick={generatePrompt}
+						 	disabled={generating}
+							size="lg" 
+							className={`bg-purple-900 mt-5 text-white w-full transition-all hover:bg-purple-800
+							${generating ? "opacity-30" : ""}
+						`}>
+							{ !generating && <Cog />	}
+                        	{ generating && <i className='bx bx-loader-alt bx-spin  text-xl' ></i>}
+
+							{generating ? "Generating..." : "Generate Prompt"}
 						</Button>
 					</div>
 					<div className="my-5 grid grid-cols-2 gap-5">
-						<Button onClick={saveCharacter}  size="lg" className="bg-gray-200 w-full text-black">
+						<Button onClick={saveCharacter} disabled={generating} size="lg" className="bg-gray-200 w-full text-black">
 							Save
 							<Save />	
 						</Button>
@@ -323,7 +334,7 @@ function Boundary() {
 
 				<div className="col-span-1 mb-20">
 
-					{ characterData && <DisplayCharacterPrompt characterData={characterData} prompt={prompt} /> }				
+					{ prompt && <DisplayCharacterPrompt characterData={characterData} prompt={prompt} /> }				
 
 				</div>
 
