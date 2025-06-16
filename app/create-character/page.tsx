@@ -245,7 +245,7 @@ function Boundary() {
 			{/* <div className="p-4 max-w-xl mx-auto mb-20"> */}
 			<div className="my-7 mx-auto w-[90%] sm:w-[60%] lg:w-[50%] xl:w-[40%]  gap-14 mb-5">				
 
-				<div className="col-span-1 mb-20">
+				<div className="col-span-1 mb-10">
 					<Accordion type="single" collapsible>
 						<AccordionItem value="item-1" className="mb-5 border-none">
 							<AccordionTrigger className="border border-gray-200 p-[1rem]">
