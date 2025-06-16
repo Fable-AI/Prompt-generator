@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/accordion"
 import { Cog, Eye, Palette, Save, User, Users2 } from 'lucide-react'
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import BasicInfoComponent from "@/components/characters/basic-info/BasicInfoComponent";
 import FacialFeatureComponent from "@/components/characters/facial-features/FacialFeatureComponent";
 import PhysicalAppearanceComponent from "@/components/characters/physical-appearance/PhysicalAppearanceComponent";
@@ -26,7 +26,7 @@ import { useMainContext } from "@/contexts/MainContext";
 
 
 
-export default function CreateCharacterPage() {
+function Boundary() {
 	const searchParams = useSearchParams();
 	const characterId = searchParams.get('character-id');
 	
@@ -316,3 +316,13 @@ export default function CreateCharacterPage() {
 		</div>
 	);
 }
+
+const CreateCharacterPage = () => {
+	return (
+		<Suspense fallback={<div className="px-5 py-10">Loading prompt generator...</div>}>
+			<Boundary />
+		</Suspense>
+	)
+}
+
+export default CreateCharacterPage;

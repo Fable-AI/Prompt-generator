@@ -25,3 +25,5 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "data/character/outfit/itemConditions.js"],
   "exclude": ["node_modules"]
 }
+
+
